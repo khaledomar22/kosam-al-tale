@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Countdown</title>
+<link rel="stylesheet" href="css.css">
+
+</head>
+
+ 
+  <!-- ======= الهيدر ======= -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-text">
+            المستقبل الأخضر
+            <span>الطاقة البديلة</span>
+          </div>
+        </a>
+  <div class="nav-toggle">☰</div>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">الرئيسية</a>
+  <a href="services.html" class="nav-link">لقاء مع مشرف المدرسة </a>
+          <a href="about.html" class="nav-link">استكشف الطاقة</a>
+          <a href="Egypt.html" class="nav-link">الطاقة في مصر</a>
+          <a href="comparison.html" class="nav-link">مقارنه بين الطاقة و انواعها  </a>
+        </nav>
+
+        <div class="header-cta">
+          <a href="#" class="btn btn-primary">ابدأ الآن</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<body>
+<section class="section section-cream serenity-countdown">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="overline">لقاء مع مشرف مكتبه المدرسة</span>
+      <h2>للتحدث عن اهمية الطاقة البديله </h2>
+      <p>سيبدا يوم 1 مارس 2026 تمام الساعة 10 صباحاً<p>
+    </div>
+
+    <div class="countdown-wrapper">
+
+      <div class="count-box">
+        <span class="count-number" id="days">00</span>
+        <span class="count-label">Days</span>
+      </div>
+
+      <div class="count-box">
+        <span class="count-number" id="hours">00</span>
+        <span class="count-label">Hours</span>
+      </div>
+
+      <div class="count-box">
+        <span class="count-number" id="minutes">00</span>
+        <span class="count-label">Minutes</span>
+      </div>
+
+      <div class="count-box">
+        <span class="count-number" id="seconds">00</span>
+        <span class="count-label">Seconds</span>
+      </div>
+
+    </div>
+
+    <div class="countdown-cta">
+      <a href="index.html" class="btn btn-primary btn-lg">عد للصفحة الرئيسية</a>
+    </div>
+
+  </div>
+
+  <!-- Decorative Glow -->
+  <div class="count-glow glow-1"></div>
+  <div class="count-glow glow-2"></div>
+</section>
+
+
+<script>
+
+// غير التاريخ هنا 👇
+let targetDate = new Date("March 1, 2026 10:00:00").getTime();
+
+let numbers = document.querySelectorAll(".count-number");
+
+function updateCountdown(){
+    let now = new Date().getTime();
+    let distance = targetDate - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    let values = [days, hours, minutes, seconds];
+
+    numbers.forEach((el, index) => {
+        if(el.innerHTML != values[index]){
+            el.innerHTML = values[index];
+            el.classList.add("animate");
+            setTimeout(() => el.classList.remove("animate"), 400);
+        }
+    });
+
+    if(distance < 0){
+        document.querySelector(".countdown").innerHTML = "🎉 انتهى الوقت!";
+    }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+</script>
+
+</body>
+</html>
